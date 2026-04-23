@@ -50,7 +50,7 @@ function draw() {
 // All mouse inputs on buttons and quiz options will be handled here
 function mousePressed() {
     // Check if the start button is clicked
-    if (mouseX > width / 2 - 75 && mouseX < width / 2 + 75 && mouseY > height / 2 - 25 && mouseY < height / 2 + 25) {
+    if (mouseX > width / 2 - 75 && mouseX < width / 2 + 75 && mouseY > height / 2 - 25 && mouseY < height / 2 + 25 && currentMenu === 'title') {
         // Start the quiz (you can replace this with a function to show the quiz)
         currentMenu = 'quiz';
         print("Quiz started!"); // Placeholder for starting the quiz
@@ -82,10 +82,16 @@ function titleScreen() {
     text("Start Quiz", width / 2, height / 2);
 }
 
+// QUIZ SCREEN, DISPLAY UPON PRESSING THE "Start Quiz" BUTTON
 function quizScreen() {
+    // Variable for tracking the current question and which variable from n1 to n6 or c1 to c6 is being updated based on the user's answers
+    let currentQuestion = 0; // Set to 0 for asking for the user's name, then increment for each subsequent question
     // Placeholder for quiz screen
     background(220);
-    textSize(24);
-    fill(0);
-    text("Quiz will be here!", width / 2, height / 2);
+}
+
+// RESULT SCREEN, DISPLAY UPON COMPLETING THE QUIZ: COMPLETED WHEN ALL QUESTIONS HAVE BEEN ANSWERED
+function resultScreen() {
+    // Placeholder for result screen
+    background(220);
 }
