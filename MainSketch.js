@@ -39,8 +39,10 @@ function setup() {
     textAlign(CENTER, CENTER);
 
     // Add the questions into the array when the program starts then display them once the quiz starts
-    questions.push(new question("What is your favourite number?", ["0-20", "21-40", "41-60", "61-80", "81-100"]));
-    questions.push(new question("What is your favourite colour?", ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"]));
+    questions.push(
+        new question("What is your favourite number?", ["0-20", "21-40", "41-60", "61-80", "81-100"]),
+        new question("What is your favourite colour?", ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "None of the above"])
+    );
 }
 
 function draw() {

@@ -13,7 +13,7 @@ function titleScreen() {
     // Start button
     let buttonColour = color(200, 200, 200); // RGB values for the button colour
     // Hover effect for the button
-    if (mouseX > width / 2 - 75 && mouseX < width / 2 + 75 && mouseY > height / 2 - 25 && mouseY < height / 2 + 25) {
+    if (mouseX >= width / 2 - 75 && mouseX <= width / 2 + 75 && mouseY >= height / 2 - 25 && mouseY <= height / 2 + 25) {
         buttonColour = color(225, 225, 225); // Lighter colour on hover
     }
     fill(buttonColour);
@@ -61,6 +61,7 @@ function quizScreen() {
     // Display only the current question
     if (currentQuestion < questions.length) {
         questions[currentQuestion].displayQuestion();
+        questions[currentQuestion].displayOptions();
     }
 }
 
