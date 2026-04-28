@@ -10,14 +10,16 @@ let n6 = 0;
 let predictedNumber = n1 + n2 + n3 + n4 + n5 + n6;
 
 // VARIABLES FOR CALCULATING THE COLOUR BEING PREDICTED RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, OR NONE OF THE ABOVE
-let c1 = 0;
-let c2 = 0;
-let c3 = 0;
-let c4 = 0;
-let c5 = 0;
-let c6 = 0;
+let c1 = 0; // Red
+let c2 = 0; // Orange
+let c3 = 0; // Yellow
+let c4 = 0; // Green
+let c5 = 0; // Blue
+let c6 = 0; // Purple
+let c7 = 0; // None of the above
 
-let predictedColourValue = c1 + c2 + c3 + c4 + c5 + c6;
+// THE PREDICTED COLOUR WILL BE DETEREMINED BASED ON WHICH OF THE ABOVE VARIABLES HAS THE HIGHEST VALUE
+
 let predictedColour = 'None of the above';
 
 // CURRENT MENU STATE
@@ -40,8 +42,14 @@ function setup() {
 
     // Add the questions into the array when the program starts then display them once the quiz starts
     questions.push(
-        new question("What is your favourite number?", ["0-20", "21-40", "41-60", "61-80", "81-100"]),
-        new question("What is your favourite colour?", ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "None of the above"])
+        new question("What is your gender?", ["Male", "Female"]),
+        new question("Which do you prefer, summer or winter?", ["Summer", "Winter"]),
+        new question("Do you prefer indoor or outdoor sports?", ["Indoor", "Outdoor"]),
+        new question("Which arts would you choose, Visual Arts (Drawing, Painting and maybe Sculpture) or Music Arts (Instrumental or Vocal)?", ["Visual Arts", "Music Arts"]),
+        new question("Do you like team sports?", ["Yes", "No"]),
+        new question("Do you like team sports?", ["Yes", "No"]),
+        new question("Do you like team sports?", ["Yes", "No"]),
+        
     );
 }
 
@@ -52,14 +60,17 @@ function draw() {
         case 'title':
             titleScreen();
             break;
-        case 'quizSelection':
-            quizSelectionScreen();
+        case 'nameInput':
+            nameInputScreen();
             break;
+        // case 'quizSelection':
+        //     quizSelectionScreen();
+        //     break;
         case 'quiz':
             quizScreen(); // This is where the quiz and all the questions will be displayed and handled
             break;
         case 'result':
-            // resultScreen(); // You can implement this function to show the results
+            resultScreen(); // You can implement this function to show the results
             break;
         }
     }
@@ -67,9 +78,43 @@ function draw() {
 
 // All mouse inputs on buttons and quiz options will be handled here
 function mousePressed() {
-    // Check if the start button is clicked
+    // Check if the start button is clicked on title screen
     if (mouseX > width / 2 - 75 && mouseX < width / 2 + 75 && mouseY > height / 2 - 25 && mouseY < height / 2 + 25 && currentMenu === 'title') {
-        // Start the quiz (you can replace this with a function to show the quiz)
-        currentMenu = 'quiz'; // Change to quiz menu
+        // Go to name input screen
+        currentMenu = 'nameInput';
+    }
+    
+    // Check if the confirm button is clicked on name input screen
+    if (mouseX > width / 2 - 60 && mouseX < width / 2 + 60 && mouseY > height / 2 + 50 && mouseY < height / 2 + 100 && currentMenu === 'nameInput') {
+        // Only proceed if a name has been entered
+        if (userName.trim() !== '') {
+            currentMenu = 'quiz';
+        }
+    }
+
+    // Check if an answer is clicked during the quiz
+    if (currentMenu === 'quiz' && currentQuestion < questions.length) {
+        questions[currentQuestion].checkOptionClick();
+    }
+}
+
+// Handle keyboard input for the name input screen (The agent automatically had this typed out for me.. I had no idea how to do this.)
+function keyPressed() {
+    if (currentMenu === 'nameInput') {
+        if (keyCode === BACKSPACE) {
+            // Remove the last character when backspace is pressed
+            userName = userName.slice(0, -1);
+            return false; // Prevent default behavior
+        } else if (keyCode === ENTER) {
+            // Proceed to quiz when Enter is pressed
+            if (userName.trim() !== '') {
+                currentMenu = 'quiz';
+            }
+            return false;
+        } else if (key.length === 1 && userName.length < 20) {
+            // Add the typed character to userName (limit to 20 characters)
+            userName += key;
+            return false;
+        }
     }
 }

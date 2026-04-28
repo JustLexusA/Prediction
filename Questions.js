@@ -24,13 +24,19 @@ class question {
             text(this.options[i], width / 2, height / 2 + i * 50);
         }
     }
-    mousePressed() {
-        // Check if the user clicks on any of the options and update the corresponding colour value
+
+    // Check if an option was clicked
+    checkOptionClick() {
         for (let i = 0; i < this.options.length; i++) {
-            let optionX = width / 2 - textWidth(this.options[i]) / 2;
-            let optionY = height / 2 + i * 50 - 10; // Adjust for text height
-            let optionWidth = textWidth(this.options[i]);
-            let optionHeight = 20; // Approximate height of the text
+            if (mouseX > width / 2 - 50 && mouseX < width / 2 + 50 && mouseY > height / 2 + i * 50 - 20 && mouseY < height / 2 + i * 50 + 20) {
+                // Handle the option selection (e.g., store the answer, move to the next question)
+                console.log(`Selected option: ${this.options[i]}`);
+                currentQuestion++; // Move to the next question
+
+                // Checks which question is being answered and adds to the score for the corresponding personality type based on the answer chosen
+                return true;
+            }
         }
+        return false;
     }
 }    
