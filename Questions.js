@@ -34,8 +34,30 @@ class question {
                 currentQuestion++; // Move to the next question
 
                 // Checks which question is being answered and adds to the score for the corresponding personality type based on the answer chosen
+                if (currentQuestion === 1) {
+                    if (this.options[i] === "Visual Arts") {
+                        c1++;
+                        n1 += 10;
+                    } else {
+                        c2++;
+                        n1 += 20;
+                    }
+                } else if (currentQuestion === 2) {
+                    if (this.options[i] === "Yes") {
+                        c3++;
+                        n2 += 10;
+                    } else {
+                        c4++;
+                        n2 += 20;
+                    }
+                } else if (currentQuestion === 3) {
+                    if (this.options[i] === "Indoor") {
+                        c5++;
+                        n3 += 10;
+                    }
                 return true;
             }
+        }
         }
         return false;
     }

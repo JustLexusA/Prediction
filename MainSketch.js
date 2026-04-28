@@ -46,9 +46,8 @@ function setup() {
         new question("Which do you prefer, summer or winter?", ["Summer", "Winter"]),
         new question("Do you prefer indoor or outdoor sports?", ["Indoor", "Outdoor"]),
         new question("Which arts would you choose, Visual Arts (Drawing, Painting and maybe Sculpture) or Music Arts (Instrumental or Vocal)?", ["Visual Arts", "Music Arts"]),
-        new question("Do you like team sports?", ["Yes", "No"]),
-        new question("Do you like team sports?", ["Yes", "No"]),
-        new question("Do you like team sports?", ["Yes", "No"]),
+        new question("Do you like to play video games?", ["Yes", "No"]),
+        new question("Do you prefer math or english?", ["Math", "English"])
         
     );
 }
@@ -72,6 +71,30 @@ function draw() {
         case 'result':
             resultScreen(); // You can implement this function to show the results
             break;
+        }
+
+        // This actively checks which colour variable has the highest value and sets the predicted colour accordingly
+        if (c1 > c2 && c1 > c3 && c1 > c4 && c1 > c5 && c1 > c6 && c1 > c7) {
+            predictedColour = 'Red';
+        } else if (c2 > c1 && c2 > c3 && c2 > c4 && c2 > c5 && c2 > c6 && c2 > c7) {
+            predictedColour = 'Orange';
+        } else if (c3 > c1 && c3 > c2 && c3 > c4 && c3 > c5 && c3 > c6 && c3 > c7) {
+            predictedColour = 'Yellow';
+        } else if (c4 > c1 && c4 > c2 && c4 > c3 && c4 > c5 && c4 > c6 && c4 > c7) {
+            predictedColour = 'Green';
+        } else if (c5 > c1 && c5 > c2 && c5 > c3 && c5 > c4 && c5 > c6 && c5 > c7) {
+            predictedColour = 'Blue';
+        } else if (c6 > c1 && c6 > c2 && c6 > c3 && c6 > c4 && c6 > c5 && c6 > c7) {
+            predictedColour = 'Purple';
+        } else if (c7 > c1 && c7 > c2 && c7 > c3 && c7 > c4 && c7 > c5 && c7 > c6) {
+            predictedColour = 'None of the above';
+        }
+
+        // This actively checks if the predicted number is above 50 or not and sets it to either "Above 50" or "Below 50"
+        if (predictedNumber > 50) {
+            predictedNumber = 'Above 50';
+        } else {
+            predictedNumber = 'Below 50';
         }
     }
 
